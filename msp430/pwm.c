@@ -6,7 +6,7 @@ unsigned int R=0,G=0,B=0;
 
 void initPWM()
 {
-  CCR0 = 100; //100 clock ticks to interrupt
+  CCR0 = 200; //100 clock ticks to interrupt
   TACTL = TASSEL_2 + MC_1; 
   r = g = b = 0;
   disablePWM();

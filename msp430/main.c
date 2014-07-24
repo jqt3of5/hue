@@ -8,8 +8,11 @@ void SetupClock()
 {
   //setting up the internal clock
   DCOCTL = 0;                               // Select lowest DCOx and MODx settings
-  BCSCTL1 = CALBC1_1MHZ;               // Set DCO
-  DCOCTL = CALDCO_1MHZ;
+  // BCSCTL1 = CALBC1_1MHZ;               // Set DCO
+  //DCOCTL = CALDCO_1MHZ;
+  BCSCTL1 = 0x0f;
+  DCOCTL = 0x60;
+  
 }
 
 int main(void)

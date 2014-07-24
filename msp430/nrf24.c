@@ -40,7 +40,7 @@ void transfer(unsigned char * buffer, int count)
 
   if (isFirst == 1)
     {
-      USISRL  = 0x0;
+      USISRL = 0x0;
       USICNT = 7;
       _BIS_SR(LPM0_bits + GIE); 
     }
@@ -62,9 +62,16 @@ void transfer(unsigned char * buffer, int count)
 #pragma vector = USI_VECTOR
 __interrupt void USI_TXRX (void)
 {
-  if (isFirst == 1 || g_buffer == 0)
+  if (g_buffer == 0)
+    {
+      USICTL1 &= ~USIIFG;                  // Clear pending flags
+      return;
+    }
+
+  if (isFirst == 1)
     {
       isFirst = 0;
+      LPM0_EXIT;
       USICTL1 &= ~USIIFG;                  // Clear pending flags
       return;
     }
