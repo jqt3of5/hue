@@ -86,15 +86,13 @@ int main(int argc, char** argv)
 
 	bool ok;
 	char color[3] = {0};
-	
 	while(1)
 	{
-	    unsigned long time = 0xFF8040;
 	    color[0] = atoi(argv[1]);
 	    color[1] = atoi(argv[2]);
 	    color[2] = atoi(argv[3]);
 
-	    printf("Now sending %b %b %b...",color[0], color[1], color[2]);
+	    printf("Now sending %i %i %i...",color[0], color[1], color[2]);
 	    ok = radio.write(color, 3);
     
 	    if (ok) {
